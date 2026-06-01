@@ -290,7 +290,7 @@ class ChessGUI:
 
         subtitle = tk.Label(
             outer,
-            text=f"Click pieces to move, or type UCI/SAN notation. You play as {color_name(HUMAN_COLOR)}.",
+            text=f"You play as {color_name(HUMAN_COLOR)}.",
             font=("Segoe UI", 10),
             bg=WINDOW_BG,
             fg=TEXT_COLOR,
