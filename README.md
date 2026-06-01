@@ -9,6 +9,7 @@ It keeps the implementation simple and uses the **Minimax algorithm with Alpha-B
 - AI uses Minimax
 - Alpha-beta pruning is used to reduce extra search
 - Simple desktop GUI built with Tkinter
+- Undo button to take back the latest move/turn
 - Accepts moves in:
   - UCI format: `e2e4`
   - SAN format: `Nf3`
@@ -53,6 +54,7 @@ python main.py
 - You play as **White**
 - Click a piece and then a destination square to move it
 - You can also type a move in the input box
+- Use **Undo Move** if you want to take back the latest move
 - Examples:
   - `e2e4`
   - `Nf3`

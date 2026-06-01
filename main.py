@@ -359,6 +359,20 @@ class ChessGUI:
             relief="flat",
             padx=12,
             pady=6,
+        ).pack(side="left", padx=(0, 8))
+
+        tk.Button(
+            controls,
+            text="Undo Move",
+            command=self.undo_last_turn,
+            font=("Segoe UI", 10, "bold"),
+            bg="#8a5a44",
+            fg="white",
+            activebackground="#6d4635",
+            activeforeground="white",
+            relief="flat",
+            padx=12,
+            pady=6,
         ).pack(side="left")
 
         board_container = tk.Frame(outer, bg=BOARD_BORDER, padx=6, pady=6)
@@ -558,6 +572,26 @@ class ChessGUI:
         self.status_var.set(message)
         self.turn_var.set(f"Final result: {self.board.result()}")
         messagebox.showinfo("Game Over", f"{message}\nResult: {self.board.result()}")
+
+    def undo_last_turn(self) -> None:
+        if self.thinking:
+            self.status_var.set("Wait for the AI move to finish before undoing.")
+            return
+
+        moves_to_undo = 2 if self.board.turn == HUMAN_COLOR and len(self.board.move_stack) >= 2 else 1
+        if len(self.board.move_stack) < moves_to_undo:
+            self.status_var.set("No move to undo yet.")
+            return
+
+        for _ in range(moves_to_undo):
+            self.board.pop()
+
+        self.selected_square = None
+        self.target_squares.clear()
+        self.move_entry.delete(0, tk.END)
+        self.last_move_var.set("Last move: -")
+        self.refresh_board()
+        self.set_player_prompt()
 
     def reset_game(self) -> None:
         self.board.reset()
