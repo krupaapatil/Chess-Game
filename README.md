@@ -37,6 +37,12 @@ The main AI idea used here is:
 - `main.py` - game logic, AI, and GUI
 - `requirements.txt` - dependency list
 
+## Tech Stack
+
+- Python
+- Tkinter
+- python-chess
+
 ## Installation
 
 ```bash
